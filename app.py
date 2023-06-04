@@ -1,15 +1,55 @@
 import streamlit as st
 from video_comments import video_comments
 from summarize import summarize
+import webbrowser
 from word_freq import WordFreq
+
+def visit_link(url): 
+    webbrowser.open_new_tab(url)
+
 
 def refresh_page():
     st.experimental_rerun()
+    
 
-def process_form():
+def process_form(): 
+
+        # CSS style for the marquee
+    marquee_style = """
+        <style>
+        .marquee {
+            width: 100%;
+            margin: 0 auto;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        </style>
+    """
+
+    # Display the marquee
+    st.write(marquee_style, unsafe_allow_html=True)
+    st.markdown('<div class="marquee"><span>Note: This version does not support abstractive summarizer. You can watch the demonstration on the given link.</span></div>', unsafe_allow_html=True)
+
+    if st.button("Video Demonstration"): 
+        visit_link("https://drive.google.com/file/d/17Mkaj1yQ_sjBm9m0BvDmT0Lxb7EiXdyg/view?usp=sharing")
+
+
+
     video_link = st.text_input("Video link")
     num_sent = st.number_input("Number of summary sentences:")
     num_word = st.number_input("Number of important words:")
+
+
     
     if st.button("Submit"):
         if num_sent.is_integer() and num_sent >= 0:
