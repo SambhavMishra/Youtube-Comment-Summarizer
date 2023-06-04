@@ -41,7 +41,7 @@ def process_form():
     st.markdown('<div class="marquee"><span>Note: This version does not support abstractive summarizer. You can watch the demonstration on the given link.</span></div>', unsafe_allow_html=True)
 
     if st.button("Video Demonstration"): 
-        visit_link("https://drive.google.com/file/d/17Mkaj1yQ_sjBm9m0BvDmT0Lxb7EiXdyg/view?usp=sharing")
+        st.video("videos/YCS demo 1.mp4")
 
 
 
